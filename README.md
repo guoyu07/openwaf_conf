@@ -7,15 +7,15 @@ Synopsis
     local twaf_config_m = require "lib.twaf.twaf_conf"
     twaf_config = twaf_config_m:new()
     
-    twaf_config:load_default_config("/secone/webapng/lualib/twaf/conf")
-    twaf_config:load_access_rule("/secone/webapng/lualib/twaf/conf")
-    twaf_config:load_policy_config("/secone/webapng/lualib/twaf/conf",
-                                   {twaf_global_conf = 1, twaf_policy_conf = 1})
+    twaf_config:load_default_config("/opt/OpenWAF/conf/twaf_default_conf.json")
+    twaf_config:load_access_rule("/opt/OpenWAF/conf")
+    twaf_config:load_policy_config("/opt/OpenWAF/conf", {twaf_policy_conf = 1})
     twaf_config:load_rules()
-    twaf_config:set_main_policy("twaf_global_conf")
+    twaf_config:set_main_policy("twaf_policy_conf")
     
-    -- json geoIP
-    twaf_config:load_geoip("/path/to/geo.json")
+    -- GeoIP 
+    twaf_config:load_geoip_country_ipv4("/opt/OpenWAF/lib/twaf/inc/knowledge_db/geo_country/GeoIP.dat")
+    twaf_config:load_geoip_country_ipv6("/opt/OpenWAF/lib/twaf/inc/knowledge_db/geo_country/GeoIPv6.dat")
 ```
 
 Configuration Directives
